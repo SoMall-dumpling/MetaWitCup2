@@ -66,6 +66,8 @@ const STRINGS = {
   creditsVisual: { zh: '视觉设计', en: 'Visual Design' },
   creditsTesters: { zh: '测试者（按名字排序）', en: 'Testers (sorted by name)' },
   creditsThanks: { zh: '特别感谢', en: 'Special Thanks' },
+  solveMode: { zh: '做题模式', en: 'Solve Mode' },
+  editMode: { zh: '编辑模式', en: 'Edit Mode' },
 } as const;
 
 export type StringKey = keyof typeof STRINGS;

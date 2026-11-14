@@ -438,6 +438,30 @@ export default function App() {
         <span className="text-amber-400 font-black text-2xl md:text-7xl leading-none">{totalBestScore}</span>
       </div>
 
+      {/* 屏幕右下角：做题 / 编辑模式切换（编辑器入口） */}
+      <div className="fixed bottom-4 right-4 z-40 flex items-center gap-1 rounded-xl border border-slate-600 bg-slate-800/90 p-1 shadow-lg backdrop-blur-sm">
+        <button
+          onClick={() => setIsEditMode(false)}
+          className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors md:text-sm ${
+            !isEditMode
+              ? 'bg-amber-400 text-slate-950 font-bold'
+              : 'text-slate-300 hover:bg-slate-700 hover:text-white'
+          }`}
+        >
+          {t('solveMode')}
+        </button>
+        <button
+          onClick={() => setIsEditMode(true)}
+          className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors md:text-sm ${
+            isEditMode
+              ? 'bg-amber-400 text-slate-950 font-bold'
+              : 'text-slate-300 hover:bg-slate-700 hover:text-white'
+          }`}
+        >
+          {t('editMode')}
+        </button>
+      </div>
+
       {/* 屏幕最左/最右侧切关按钮：行首关无左按钮；右按钮在本关解出后才出现，
           行末关的右按钮改为进入地图 */}
       {showPrevButton && (
