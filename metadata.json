@@ -1,0 +1,6 @@
+{
+  "name": "第二届元见联会",
+  "description": "一个划线解谜游戏。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

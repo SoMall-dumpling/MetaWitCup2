@@ -1,0 +1,201 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html,
+  body {
+    /* slate-800：题板高于视口出现滚动条时，根 div 溢出撑不高，
+       滚动区域下方由 html/body 兜底保持深色，不会露出白底 */
+    background-color: #1e293b;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    overscroll-behavior: none;
+  }
+}
+
+/* 报错符号闪烁：符号原色 ↔ 红色（0.8s 一个周期），原色经 CSS 变量注入，
+   避免透明度脉动造成的「空白 ↔ 红」观感 */
+@keyframes flash-symbol {
+  0%,
+  100% {
+    /* 初始与结束相位都是符号本色，红色只在周期中点出现 */
+    fill: var(--flash-original-fill, #ef4444);
+    stroke: var(--flash-original-stroke, var(--flash-original-fill, #ef4444));
+  }
+  50% {
+    fill: #ef4444;
+    stroke: #ef4444;
+  }
+}
+
+.animate-flash-symbol {
+  animation: flash-symbol 0.6s ease-in-out infinite;
+}
+
+/* 地图选关：关卡节点悬浮提亮 */
+.map-node {
+  transition: filter 0.15s ease;
+}
+.map-node:hover {
+  filter: brightness(1.3);
+}
+
+/* 线头伸入终点圆弧：整条线白↔黄闪烁，提示「点击判定」。
+   线（stroke）与圆（fill）分开动画：fill 动画会覆盖路径的 fill="none"
+   把线围成的区域填成实心，所以路径只能用 stroke 动画 */
+@keyframes flash-line-stroke {
+  0%,
+  100% {
+    stroke: #ffffff;
+  }
+  50% {
+    stroke: #facc15;
+  }
+}
+
+@keyframes flash-line-fill {
+  0%,
+  100% {
+    fill: #ffffff;
+  }
+  50% {
+    fill: #facc15;
+  }
+}
+
+.animate-flash-line {
+  animation: flash-line-stroke 0.7s ease-in-out infinite;
+}
+
+.animate-flash-fill {
+  animation: flash-line-fill 0.7s ease-in-out infinite;
+}
+
+/* —— 亮色主题（玩家优化版方案 + 正式版额外内容适配）—— */
+
+/* 主题切换瞬间禁用所有过渡：配色立刻生效，不残留渐变（见 utils/theme.ts） */
+html.wt-theme-switching *,
+html.wt-theme-switching *::before,
+html.wt-theme-switching *::after {
+  transition: none !important;
+}
+/* slate 变量整体翻转：所有 slate 工具类（文字/背景/边框）在亮色下自动对调深浅 */
+html[data-theme='light'] {
+  --color-slate-950: #f8fafc;
+  --color-slate-900: #f1f5f9;
+  --color-slate-800: #e2e8f0;
+  --color-slate-700: #cbd5e1;
+  --color-slate-600: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-400: #475569;
+  --color-slate-300: #334155;
+  --color-slate-200: #1e293b;
+  --color-slate-100: #0f172a;
+  --color-slate-50: #020617;
+  color-scheme: light;
+}
+
+/* 页面兜底背景（滚动条外露区域）：与亮色下的根容器一致 */
+html[data-theme='light'],
+html[data-theme='light'] body {
+  background-color: #e2e8f0;
+}
+
+/* slate-950 语义 = 最深色：亮色下仍用作深色文字（如琥珀按钮上的字） */
+html[data-theme='light'] .text-slate-950 {
+  color: #0f172a;
+}
+html[data-theme='light'] .selection\:text-slate-950::selection {
+  color: #0f172a;
+}
+html[data-theme='light'] .selection\:text-slate-950 ::selection {
+  color: #0f172a;
+}
+
+/* 强调文字加深，保证浅底可读性。
+   注意：text-amber-400（计时器/总分/达成状态分数）保持与暗色模式一致的琥珀黄，
+   不做加深；以下只处理 amber-300 */
+html[data-theme='light'] .text-amber-300 {
+  color: #b45309;
+}
+html[data-theme='light'] .hover\:text-amber-300:hover {
+  color: #b45309;
+}
+html[data-theme='light'] .text-red-400 {
+  color: #b91c1c;
+}
+html[data-theme='light'] .text-cyan-300 {
+  color: #0e7490;
+}
+/* 得分条虚线标记（计分下限青 / 目标琥珀 / 最大分红）在浅色轨道上加深 */
+html[data-theme='light'] .bg-cyan-400\/70 {
+  background-color: rgba(14, 116, 144, 0.7);
+}
+html[data-theme='light'] .bg-amber-400\/70 {
+  background-color: rgba(180, 83, 9, 0.7);
+}
+html[data-theme='light'] .bg-red-400\/70 {
+  background-color: rgba(185, 28, 28, 0.7);
+}
+
+/* 题板面板底色（覆盖 bg-slate-900/90 工具类） */
+html[data-theme='light'] .wt-board {
+  background-color: rgba(226, 232, 240, 0.9);
+  /* 亮色下 shadow-2xl 大阴影太重：换成更轻更柔的投影。
+     只覆盖 --tw-shadow 变量，box-shadow 链里的 ring 组件不受影响 */
+  --tw-shadow: 0 12px 24px -12px rgba(15, 23, 42, 0.12);
+}
+
+/* 题板外框环：白色环在浅色面板上不可见，改深色 */
+html[data-theme='light'] .ring-white {
+  --tw-ring-color: rgba(15, 23, 42, 0.9);
+}
+html[data-theme='light'] .ring-white\/10 {
+  --tw-ring-color: rgba(15, 23, 42, 0.1);
+}
+
+/* 得分柱（白柱状态）与柱上数字在亮色下反转（浅轨道 + 深柱 + 白字） */
+html[data-theme='light'] .score-pillar {
+  background-color: #1e293b;
+}
+html[data-theme='light'] .score-pillar-num {
+  color: #ffffff;
+}
+
+/* 地图节点：浅色方块悬浮改加深（原 brightness(1.3) 会曝光过度） */
+html[data-theme='light'] .map-node:hover {
+  filter: brightness(0.9);
+}
+
+/* 线头伸入终点圆弧的闪烁动画：亮色下基色与划线同色（slate-600，见 utils/theme.ts），
+   浅一档的基色让「线色 ↔ 黄」的跳变更柔和 */
+@keyframes wt-flash-line {
+  0%,
+  100% {
+    stroke: #475569;
+  }
+  50% {
+    stroke: #facc15;
+  }
+}
+
+@keyframes wt-flash-fill {
+  0%,
+  100% {
+    fill: #475569;
+  }
+  50% {
+    fill: #facc15;
+  }
+}
+
+html[data-theme='light'] .animate-flash-line {
+  animation-name: wt-flash-line;
+}
+html[data-theme='light'] .animate-flash-fill {
+  animation-name: wt-flash-fill;
+}

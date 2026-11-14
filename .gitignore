@@ -1,0 +1,22 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# 比赛存档（玩家提交数据，不入库）
+MetaWitCup2Saves/
+MetaWitCup2Saves_en/
+
+# 带密码分发 zip（比赛已结束，不再需要）
+*.zip
+
+# 本地工具配置
+.claude/
+.aistudio/
+
+# 临时调试脚本（不入库）
+scripts/tmp-*.ts
