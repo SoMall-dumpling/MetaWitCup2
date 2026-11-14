@@ -6,7 +6,9 @@
 
 ## 🎮 直接游玩 / Play Now
 
-| 版本 / Version | 链接 / Link |
+🌐 **在线游玩 / Play online**：**[somall-dumpling.github.io/MetaWitCup2](https://somall-dumpling.github.io/MetaWitCup2/)**（GitHub Pages，中英文两个版本任选）
+
+| 版本 / Version | 单文件下载 / Download |
 | --- | --- |
 | 中文版（默认中文界面） | [MetaWitCup2.html](MetaWitCup2.html) |
 | English build (English UI by default) | [MetaWitCup2_en.html](MetaWitCup2_en.html) |

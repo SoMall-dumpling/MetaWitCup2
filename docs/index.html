@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MetaWitCup2 · 第二届元见联会</title>
+  <meta name="description" content="The Witness 风格划线解谜游戏，第二届元见联会比赛作品。中英文版在线即玩。" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.75rem;
+      background: #1e293b;
+      color: #f1f5f9;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      color: #fbbf24;
+    }
+    .sub { color: #94a3b8; font-size: clamp(1rem, 2.5vw, 1.25rem); }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      justify-content: center;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 1.75rem 2.25rem;
+      border: 1px solid #475569;
+      border-radius: 1.25rem;
+      background: #0f172a;
+      text-decoration: none;
+      transition: border-color .15s ease, transform .15s ease;
+    }
+    .card:hover { border-color: #fbbf24; transform: translateY(-3px); }
+    .card .big { font-size: 1.35rem; font-weight: 700; color: #f8fafc; }
+    .card .hint { font-size: .85rem; color: #94a3b8; }
+    .card .play {
+      display: inline-block;
+      padding: .55rem 1.9rem;
+      border-radius: .6rem;
+      background: #fbbf24;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: .95rem;
+    }
+    .note { color: #94a3b8; font-size: .9rem; line-height: 1.7; max-width: 34rem; }
+    .repo a { color: #fbbf24; text-decoration: none; font-size: .9rem; }
+    .repo a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>MetaWitCup2</h1>
+  <p class="sub">第二届元见联会 · The Witness 风格划线解谜</p>
+
+  <div class="cards">
+    <a class="card" href="./MetaWitCup2.html">
+      <span class="big">中文版</span>
+      <span class="hint">52 题 · 5 章 · 满分 675</span>
+      <span class="play">开始游戏</span>
+    </a>
+    <a class="card" href="./MetaWitCup2_en.html">
+      <span class="big">English</span>
+      <span class="hint">52 puzzles · 5 chapters · max 675</span>
+      <span class="play">Play</span>
+    </a>
+  </div>
+
+  <p class="note">
+    从起点连到出口，让题板上的每个符号都得到满足。<br />
+    游戏内按 <b>Ctrl+E</b> 可打开谜题工坊，自制关卡。<br />
+    Draw a path from start to exit and satisfy every symbol. Press <b>Ctrl+E</b> in-game to open the puzzle editor.
+  </p>
+
+  <p class="repo"><a href="https://github.com/SoMall-dumpling/MetaWitCup2">GitHub 仓库 →</a></p>
+</body>
+</html>
