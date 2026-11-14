@@ -23,9 +23,9 @@ Download a file and double-click to play — no server needed. 下载后双击�
 
 ## 🛠️ 编辑器 / Puzzle Editor
 
-Press **`Ctrl+E`**（macOS：`Cmd+E`）to toggle the built-in puzzle workshop: build custom puzzles on a 1–8 grid, set symbols, starts/exits, scoring rules, import/export puzzle JSON or TypeScript literals, and share puzzles via link.
+Use the mode switch in the bottom-right corner of the screen（右下角的「做题模式 / 编辑模式」切换按钮）, or press **`Ctrl+E`**（macOS：`Cmd+E`）, to toggle the built-in puzzle workshop: build custom puzzles on a 1–8 grid, set symbols, starts/exits, scoring rules, import/export puzzle JSON or TypeScript literals, and share puzzles via link.
 
-按 **`Ctrl+E`**（macOS 为 `Cmd+E`）打开内置谜题工坊：在 1–8 网格上自制关卡、摆放符号、设置起点出口与计分规则、导入导出 JSON / TS 关卡数据、生成分享链接。
+在 1–8 网格上自制关卡、摆放符号、设置起点出口与计分规则、导入导出 JSON / TS 关卡数据、生成分享链接。
 
 ## 🏆 比赛与排名 / Competition & Results
 
